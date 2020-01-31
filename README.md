@@ -21,7 +21,7 @@
 * POST BODY (JSON): 
 ```javascript
   {
-    "items": Array<"Soup" | "Bread" | "Milk", "Apples">,
+    "items": Array<"Soup" | "Bread" | "Milk" | "Apples">,
     "currency" : "GBP" | "EUR" | "USD"
   }
 ```
