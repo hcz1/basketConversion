@@ -26,7 +26,7 @@ const getExchangeRate = async ( { currency } ) =>
 
 app.post('/basket', async (request, response) => {
   const { items = [], currency = 'USD' } = request.body;
-  const subTotal = items.reduce((prev, curr) => prev += PRICES[curr.toUpperCase()], 0);
+  const subTotal = items.reduce((prev, curr) => prev += PRICES[curr.toUpperCase()] || 0, 0);
   const itemisedList = itemiseList(items);
 
   const currencyLayerRequest = await getExchangeRate( { currency } );
