@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const { ACCESS_TOKEN, PRICES } = require('./config')
+const { ACCESS_TOKEN, PRICES } = require('./config');
 const { 
   itemiseList,
   roundExchangeRate,
@@ -13,8 +13,9 @@ const {
   exchangeDiscountAmt,
   exchangeTotal,
   generateObj,
-} = require('./helpers')
+} = require('./helpers');
 const app = express();
+app.use(express.json());
 
 const getExchangeRate = async ( { currency } ) => 
   axios.get(
@@ -22,8 +23,6 @@ const getExchangeRate = async ( { currency } ) =>
     .then(({ data }) => data)
     .catch(e=>e);
   
-
-app.use(express.json());
 
 app.post('/basket', async (request, response) => {
   const { items = [], currency = 'USD' } = request.body;
@@ -43,6 +42,11 @@ app.post('/basket', async (request, response) => {
       res
     )
   }
+});
+
+app.get('*', (request, response) => {
+  response.status(404)
+  response.send({error: 'Not found', message: 'Please POST to /basket'});
 });
 
 app.listen(8081);

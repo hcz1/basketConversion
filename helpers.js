@@ -17,7 +17,7 @@ const exchangeSubTotal = ({subTotalUSD, roundedExchangeRate}) =>
   Math.floor(subTotalUSD * roundedExchangeRate * 100 ) / 100;
 const exchangeDiscounts = ({ appleDiscount, milkDiscount }) => 
   [appleDiscount, milkDiscount].filter(Boolean);
-const discountUSD = ({appleDiscountUSD = 0, milkDiscount = false}) => appleDiscountUSD + (milkDiscount ? 0.50 : 0);
+const discountUSD = ({appleDiscountUSD = 0, milkDiscount = false}) => appleDiscountUSD + (milkDiscount ? Math.abs(PRICES.DISCOUNTS.MILK) : 0);
 const exchangeDiscountAmt = ({totalDiscountUSD, roundedExchangeRate}) => 
   Math.floor(100 * totalDiscountUSD * roundedExchangeRate)/100;
 const exchangeTotal = ({exchangedSubTotal, exchangedDiscountAmt}) => 

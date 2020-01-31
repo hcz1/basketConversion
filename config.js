@@ -1,3 +1,4 @@
+// would not usually leave access_token here would put in ENV variable process.ENV.ACCESS_TOKEN
 const ACCESS_TOKEN = '7da111ea5b52c436523f66a628842ab0';
 const PRICES = {
   'SOUP': 0.65,
@@ -6,7 +7,7 @@ const PRICES = {
   'APPLES': 1.00,
   'DISCOUNTS': {
     'APPLES': 0.1,
-    'MILK': (amount) => amount - 0.50, 
+    'MILK': -0.50,
   },
 }
 
