@@ -29,13 +29,13 @@ app.post('/basket', async (request, response) => {
   const subTotal = items.reduce((prev, curr) => prev += PRICES[curr.toUpperCase()], 0);
   const itemisedList = itemiseList(items);
 
-  const t = await getExchangeRate( { currency } );
+  const currencyLayerRequest = await getExchangeRate( { currency } );
   
-  if(!t.success) {
+  if(!currencyLayerRequest.success) {
     response.status(500)
-    response.send({error: t.error})}
+    response.send({error: currencyLayerRequest.error})}
   else {
-    const { quotes: { ['USD' + currency]: exchangedRate } } = t;
+    const { quotes: { ['USD' + currency]: exchangedRate } } = currencyLayerRequest;
     const res = generateObj({exchangedRate, subTotal, itemisedList, currency});
     response.status(200);
     response.send(
