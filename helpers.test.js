@@ -16,7 +16,11 @@ test('2 decimal places', () => {
 });
 
 test('has milk discount', () => {
-  expect(hasMilkDiscount({MILK: 1})).toBe("3 Milk 50 cents off");
+  expect(hasMilkDiscount({MILK: 3})).toBe("3 Milk 50 cents off");
+});
+
+test('has less than 3 milk discount', () => {
+  expect(hasMilkDiscount({MILK: 2})).toBe(false);
 });
 
 test('has no milk discount', () => {
