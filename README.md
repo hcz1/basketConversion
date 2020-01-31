@@ -14,6 +14,7 @@
 
 
   ## Usage
+* Can configure prices of items and discounts in config.js
 * REST API
 * POST to localhost:8081/basket
 * HEADER: Content-Type:application/json
